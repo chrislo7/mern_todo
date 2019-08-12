@@ -3,17 +3,17 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
 
+import { connect } from 'react-redux';
+import { getTodos } from '../actions/todoActions'
+import PropTypes from 'prop-types'
+
 class TodoList extends Component {
-    state = {
-        // hardcoded, change later
-        todos: [
-            { id: uuid(), name: "Learn Redux" },
-            { id: uuid(), name: "Buy groceries" },
-            { id: uuid(), name: "Go to gym" },
-            { id: uuid(), name: "Have fun" }
-        ]
+
+    componentDidMount() {
+        this.props.getTodos();
     }
 
+    // connect to ADD_TODO 
     handleAddTodo = () => {
         const name = prompt('Enter Todo');
         if ( name ) {
@@ -23,6 +23,7 @@ class TodoList extends Component {
         };
     }
 
+    // connect to DELETE_TODO 
     handleRemoveTodo = (id) => {
         this.setState(state => ({
             todos: state.todos.filter(todo => todo.id !== id )
@@ -30,7 +31,7 @@ class TodoList extends Component {
     }
 
     render() {
-        const { todos } = this.state;
+        const { todos } = this.props.todo;
         return(
             <Container>
                 <Button 
@@ -64,4 +65,14 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+TodoList.propTypes = {
+    getTodos: PropTypes.func.isRequired,
+    todo: PropTypes.object.isRequired
+
+}
+
+const mapStateToProps = (state) => ({
+    todo: state.todo
+});
+
+export default connect( mapStateToProps, { getTodos } ) ( TodoList );
