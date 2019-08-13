@@ -29,13 +29,6 @@ class TodoList extends Component {
         const { todos } = this.props.todo;
         return(
             <Container>
-                <Button 
-                    color="dark" 
-                    style={{ marginBottom: '2rem' }} 
-                    onClick= { this.handleAddTodo }
-                >
-                    Add Todo
-                </Button>
                 <ListGroup>
                     <TransitionGroup className='todo-list'>
                         {todos.map(({ id, name }) => (

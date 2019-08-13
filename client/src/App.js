@@ -7,6 +7,9 @@ import store from './store';
 
 import AppNavbar from './components/AppNavbar';
 import TodoList from './components/TodoList';
+import TodoModal from './components/TodoModal';
+
+import { Container } from 'reactstrap'
 
 
 class App extends Component {
@@ -15,7 +18,10 @@ class App extends Component {
             <Provider store={ store }>
                 <div className="App">
                     <AppNavbar />
-                    <TodoList />
+                    <Container>
+                        <TodoModal />
+                        <TodoList />
+                    </Container>
                 </div>
             </Provider>
         );
