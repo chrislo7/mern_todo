@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import uuid from 'uuid';
 
 import { connect } from 'react-redux';
-import { getTodos } from '../actions/todoActions'
-import PropTypes from 'prop-types'
+import { getTodos, deleteTodo } from '../actions/todoActions';
+import PropTypes from 'prop-types';
 
 class TodoList extends Component {
 
@@ -13,21 +12,17 @@ class TodoList extends Component {
         this.props.getTodos();
     }
 
-    // connect to ADD_TODO 
-    handleAddTodo = () => {
-        const name = prompt('Enter Todo');
-        if ( name ) {
-            this.setState(state => ({ 
-                todos: [...state.todos, { id: uuid(), name }]
-            }));
-        };
-    }
+    // handleAddTodo = () => {
+    //     const name = prompt('Enter Todo');
+    //     if ( name ) {
+    //         this.setState(state => ({ 
+    //             todos: [...state.todos, { id: uuid(), name }]
+    //         }));
+    //     };
+    // }
 
-    // connect to DELETE_TODO 
     handleRemoveTodo = (id) => {
-        this.setState(state => ({
-            todos: state.todos.filter(todo => todo.id !== id )
-        }));
+        this.props.deleteTodo(id);
     }
 
     render() {
@@ -50,7 +45,7 @@ class TodoList extends Component {
                                         className='remove-btn'
                                         color='danger'
                                         size='sm'
-                                        onClick={() => this.handleRemoveTodo(id) }
+                                        onClick={this.handleRemoveTodo.bind(this, id) }
                                     >
                                         X
                                     </Button>
@@ -75,4 +70,4 @@ const mapStateToProps = (state) => ({
     todo: state.todo
 });
 
-export default connect( mapStateToProps, { getTodos } ) ( TodoList );
+export default connect( mapStateToProps, { getTodos, deleteTodo } ) ( TodoList );

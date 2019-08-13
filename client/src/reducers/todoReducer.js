@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import { GET_TODOS, ADD_TODOS, DELETE_TODOS } from '../actions/types';
+import { GET_TODOS, ADD_TODO, DELETE_TODO } from '../actions/types';
 
 // hardcoded todos
 const initialState = {
@@ -16,6 +16,10 @@ export default function(state = initialState, action) {
     switch (action.type) {
         case 'GET_TODOS':
             return {...state};
+        case 'DELETE_TODO':
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.payload )            }
         default:
             return state;
     }
