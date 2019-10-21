@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions/todoActions'
-import uuid from 'uuid';
 
 import {
     Button,
@@ -35,8 +34,6 @@ class TodoModal extends Component {
         e.preventDefault();
 
         const newTodo = {
-            // reminder to take out uuid after connecting with database/server
-            id: uuid(),
             name: this.state.name
         }
 

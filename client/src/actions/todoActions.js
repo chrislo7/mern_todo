@@ -3,7 +3,7 @@ import { GET_TODOS, ADD_TODO, DELETE_TODO, TODOS_LOADING } from './types';
 
 export const getTodos = () => dispatch => {
     axios
-        .get('http://localhost:5000/api/items')
+        .get('api/items')
         .then(res => 
             dispatch({
                 type: GET_TODOS,
@@ -12,18 +12,26 @@ export const getTodos = () => dispatch => {
         )
 }
 
-export const deleteTodo = ( id ) => {
-    return {
-        type: DELETE_TODO,
-        payload: id
-    }
+export const addTodo = ( todo ) => dispatch => {
+    axios
+        .post('api/items', todo)
+        .then(res => 
+            dispatch({
+                type: ADD_TODO,
+                payload: res.data
+            })
+        )
 }
 
-export const addTodo = ( todo ) => {
-    return {
-        type: ADD_TODO,
-        payload: todo
-    }
+export const deleteTodo = ( id ) => dispatch => {
+    axios
+        .delete('api/items/' + id)
+        .then(res => 
+            dispatch({
+                type: DELETE_TODO,
+                payload: id
+            })
+        )
 }
 
 export const setTodosLoading = () => {

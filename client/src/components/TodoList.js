@@ -22,14 +22,15 @@ class TodoList extends Component {
             <Container>
                 <ListGroup>
                     <TransitionGroup className='todo-list'>
-                        {todos.map(({ id, name }) => (
-                            <CSSTransition key={ id } timeout={ 500 } classNames="fade">
-                                <ListGroupItem>
+                        {todos.map(({ _id, name }) => (
+                            <CSSTransition key={ _id } timeout={ 500 } classNames="fade">
+                                <ListGroupItem className='hoverzoom'>
                                     <Button 
+                                        outline
                                         className='remove-btn'
                                         color='danger'
                                         size='sm'
-                                        onClick={this.handleRemoveTodo.bind(this, id) }
+                                        onClick={this.handleRemoveTodo.bind(this, _id) }
                                     >
                                         X
                                     </Button>

@@ -2,6 +2,17 @@
     margin-right: 0.5rem;
 }
 
+.hoverzoom {
+    transition: transform .2s; /* Animation */
+}
+
+.hoverzoom:hover {
+    transform: scale(1.05);
+    width: 100%;
+    border-bottom: 2px solid #87BCDE;
+    z-index: 1;
+}
+
 .fade-enter {
     opacity: 0.01;
 }
