@@ -1,21 +1,19 @@
 import uuid from 'uuid';
-import { GET_TODOS, ADD_TODO, DELETE_TODO } from '../actions/types';
+import { GET_TODOS, ADD_TODO, DELETE_TODO, TODOS_LOADING } from '../actions/types';
 
-// hardcoded todos
 const initialState = {
-    todos: [
-        { id: uuid(), name: "Learn Redux" },
-        { id: uuid(), name: "Buy groceries" },
-        { id: uuid(), name: "Go to gym" },
-        { id: uuid(), name: "Have fun" },
-        { id: uuid(), name: "Eat food" }
-    ]
+    todos: [],
+    loading: false
 }
 
 export default function(state = initialState, action) {
     switch (action.type) {
         case 'GET_TODOS':
-            return {...state};
+            return {
+                ...state,
+                todos: action.payload,
+                loading: false
+            }
         case 'DELETE_TODO':
             return {
                 ...state,
@@ -25,6 +23,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 todos: [action.payload, ...state.todos]
+            }
+        case 'TODOS_LOADING': 
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state;

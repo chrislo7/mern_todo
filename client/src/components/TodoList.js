@@ -12,15 +12,6 @@ class TodoList extends Component {
         this.props.getTodos();
     }
 
-    // handleAddTodo = () => {
-    //     const name = prompt('Enter Todo');
-    //     if ( name ) {
-    //         this.setState(state => ({ 
-    //             todos: [...state.todos, { id: uuid(), name }]
-    //         }));
-    //     };
-    // }
-
     handleRemoveTodo = (id) => {
         this.props.deleteTodo(id);
     }

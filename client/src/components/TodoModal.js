@@ -59,6 +59,7 @@ class TodoModal extends Component {
                 <Modal
                     isOpen={ this.state.modal }
                     toggle={ this.toggle }
+                    autoFocus={false}
                 >
                     <ModalHeader toggle={ this.toggle }>Add to Todo List</ModalHeader>
                     <ModalBody>
@@ -69,8 +70,9 @@ class TodoModal extends Component {
                                     type='text'
                                     name='name'
                                     id='todo'
-                                    placeholder='add todo item'
+                                    placeholder='add todo'
                                     onChange={ this.onChange }
+                                    autoFocus={true}
                                 />
                                 <Button
                                     color="dark"
