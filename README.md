@@ -1,6 +1,8 @@
 # MERN-TODOLIST
 A simple Todo list with MERN ( MongoDB, Express, React, NodeJS )
 
+_*NOTE: I've shut down the cluster on Atlas, so database integration won't work properly*_
+
 ## Instructions
 
 1. git clone this repo
